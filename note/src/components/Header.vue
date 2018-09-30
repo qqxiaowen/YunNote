@@ -26,8 +26,8 @@
 <style scoped lang="scss">
 .Header{
     width: 100%;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     background: #409eff;
 }
 .Header_count{
@@ -47,7 +47,7 @@
     }
     .bt_ys{
         float: right;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 }
 </style>

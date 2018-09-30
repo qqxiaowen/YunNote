@@ -1,25 +1,31 @@
 <template>
-    <div class="write_box">
-        <h2>标题：</h2>
-        <el-input placeholder="请输入标题" v-model="formdata.title"></el-input>
-        <h2 class="h2_two">内容：</h2>
-        <div class="quill-wrap">
-            <quill-editor
-            v-model="formdata.content"
-            ref="myQuillEditor"
-            :options="editorOption"
-            @change="handlechange"
-            >
-            </quill-editor>
+    <div>
+         <el-breadcrumb style="margin: 15px 0;" separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item >写笔记页面</el-breadcrumb-item>
+        </el-breadcrumb>
+        <div class="write_box">
+            <h2>标题：</h2>
+            <el-input placeholder="请输入标题" v-model="formdata.title"></el-input>
+            <h2 class="h2_two">内容：</h2>
+            <div class="quill-wrap">
+                <quill-editor
+                v-model="formdata.content"
+                ref="myQuillEditor"
+                :options="editorOption"
+                @change="handlechange"
+                >
+                </quill-editor>
+            </div>
+            <div class="category">
+                <span class="category_bt">标签：</span>
+                <el-radio-group v-model="formdata.category" :data="category" size='mini'>
+                    <el-radio-button v-for="(item,index) in category" :label="item._id" :key="index" >{{item.catename}}</el-radio-button>
+                </el-radio-group>
+            </div>
+            
+            <el-button type="primary" @click="handleSublit" :disabled="isdisabled">发布笔记</el-button>
         </div>
-        <div class="category">
-            <span class="category_bt">标签：</span>
-            <el-radio-group v-model="formdata.category" :data="category" size='mini'>
-                <el-radio-button v-for="(item,index) in category" :label="item._id" :key="index" >{{item.catename}}</el-radio-button>
-            </el-radio-group>
-        </div>
-        
-        <el-button type="primary" @click="handleSublit" :disabled="isdisabled">发布笔记</el-button>
     </div>
 </template>
 
@@ -73,7 +79,7 @@
             this.$axios.post('/article',this.formdata).then(res => {
                 if(res.code == 200){
                     this.$message.success(res.msg)
-                    this.$router.pus('/notelist')
+                    this.$router.push('/notelist')
                 }
             })
         },

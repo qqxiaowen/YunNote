@@ -1,11 +1,17 @@
 <template>
     <div>
-       <div style="margin-top: 15px;">
-            <el-input placeholder="请输入内容"  class="input-with-select">
-                <el-button slot="append" icon="el-icon-search"></el-button>
-            </el-input>
+        <el-breadcrumb style="margin: 15px 0;" separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{path:'/notelist'}" >笔记列表页</el-breadcrumb-item>
+        </el-breadcrumb>
+        <div class="notelist">
+        <div style="margin-top: 15px;">
+                <el-input placeholder="请输入笔记标题" v-model="userscreen"  class="input-with-select">
+                </el-input>
+            </div>
+                <Notelist :screen="userscreen"></Notelist>
         </div>
-        <Notelist></Notelist>
+       
     </div>
 </template>
 
@@ -14,8 +20,13 @@
     export default {
         components:{
             Notelist
+        },
+        data(){
+            return{
+                userscreen:'',
+            }
         }
-        
+       
     }
 </script>
 
@@ -25,5 +36,9 @@
 }
 .btn_ys{
     float: right;
+}
+.notelist{
+    width: 900px;
+    margin: 0 auto;
 }
 </style>

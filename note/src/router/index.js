@@ -10,32 +10,56 @@ const components = {
   register:()=> import('@/views/register'),
   writenote:()=> import('@/views/writenote'),
   notelist:()=> import('@/views/notelist'),
+  article:()=> import('@/views/article'),
 }
 
 const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      meta:{
+        title:'首页'
+      },
       component: index
     },
     {
       path: '/register',
-      name: 'register',
+      meta:{
+        title:'注册页'
+      },
       component: components.register
     },
     {
       path: '/writenote',
-      name: 'writenote',
+      meta:{
+        title:'写笔记页'
+      },
       component: components.writenote
     },
     {
       path: '/notelist',
-      name: 'notelist',
+      meta:{
+        title:'笔记列表页'
+      },
       component: components.notelist
+    },
+    {
+      path: '/article',
+      meta:{
+        title:'笔记详情页'
+      },
+      component: components.article
     }
   ]
 })
+
+router.beforeEach((to,from,next) =>{
+  if (to.meta && to.meta.title){
+      document.title = to.meta.title
+  }
+  next()
+})
+
 router.beforeEach((to, from, next) => {
   Nprogress.start()
   next()

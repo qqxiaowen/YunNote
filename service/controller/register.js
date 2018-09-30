@@ -18,7 +18,7 @@ router.post('/user',(req,res)=>{
                     msg:'缺少必要信息'
                 })
             }else{
-                const avatarNumber = Math.ceil(Math.random()*9)
+                const avatarNumber = Math.floor(Math.random()*9)
                 const avatar = `http://pbl.yaojunrong.com/avatar${avatarNumber}.jpg`
 
                 user.create({avatar,username,password,email}).then(data=>{
