@@ -33,6 +33,8 @@
     import 'quill/dist/quill.snow.css'
     import {quillEditor, Quill} from 'vue-quill-editor'
     import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+
+    import axios from 'axios'
     
     Quill.register('modules/ImageExtend', ImageExtend)
     export default {
@@ -40,6 +42,7 @@
     data() {
       return {
         category:'',
+        token:'',
         formdata:{
             content: '',
             contentText:'',
@@ -51,11 +54,17 @@
           modules: {
             ImageExtend: {
               loading: true,
-              name: 'img',
-              action: '',
+              name: 'file',
+              action: 'https://up-z1.qiniup.com',
               response: (res) => {
-                return res.info
-              }
+                return res.url
+              },
+              change: (xhr, formData) => {
+                    // xhr.setRequestHeader('myHeader','myValue')
+                    console.log(this.token)
+                        formData.append('token', this.token)
+                    } 
+             
             },
             toolbar: {
               container: container,
@@ -70,6 +79,11 @@
       }
     },
     methods: {
+        gettoken(){
+            axios.get('http://upload.yaojunrong.com/getToken').then(res =>{
+                this.token = res.data.data
+            })
+        },
         handlechange({ quill, html, text }){
             let newtext = text.substring(0,200) + '...'
             this.formdata.contentText = newtext
@@ -92,6 +106,7 @@
     },
     created() {
         this.getCategory()
+        this.gettoken()
     },
     computed:{
         isdisabled(){

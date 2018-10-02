@@ -15,7 +15,7 @@
                         {{article.author.username}}                   
                     </div>
                     <div class="row2">
-                        <span>{{article.updateTime}}</span>阅读 {{article.readnumber}}
+                        <span>{{article.createTime}}</span>阅读 {{article.readnumber}}
                     </div>
                 </div>
             </div>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+    import handletime from '../package/time'
     export default {
         data(){
             return{
@@ -41,6 +42,7 @@
 
                 this.$axios.get(`/article/${this.$route.query.id}`).then(res => {
                     this.article = res.data
+                    this.article.createTime = handletime(this.article.createTime)
                 })
             }
         },

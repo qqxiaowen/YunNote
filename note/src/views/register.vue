@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    // import handletime from '../package/time'
     export default {
         data(){
             return{
@@ -63,7 +64,10 @@
 
             },
 
-        }
+        },
+        // created(){
+        //     console.log(handletime('2018-09-28T13:44:41.221Z'))
+        // }
         
     }
 </script>
