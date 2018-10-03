@@ -73,6 +73,7 @@
           const res = await this.$axios.get('/logout')
           console.log(res)
           let userinfo = {
+              _id:'',
               avatar: '',
               email:'',
               username:'',

@@ -103,7 +103,28 @@ router.delete('/article/:id',(req,res) => {
             msg:'缺少必要参数'
         })
     }
-    
+})
+
+// 获取某个用户的所有笔记
+router.get('/article/user/:id',(req,res) => {
+    let {id} = req.params
+    article.find({author:id}).sort({_id:-1})
+    .populate({
+        path:'category'
+    })
+    // .populate({
+    //     path:'author',
+    //     select:'-password'
+    // })
+    .then(data => {
+        res.json({
+            code:200,
+            msg:'获取单个用户的所有笔记成功',
+            data
+        })
+       
+    })
+
 })
 
 

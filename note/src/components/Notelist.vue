@@ -108,6 +108,7 @@
     padding: 20px;
    li{
        margin-bottom: 26px;
+       cursor: pointer;
    }
 }
 .top{

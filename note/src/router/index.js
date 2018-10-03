@@ -12,6 +12,7 @@ const components = {
   notelist:()=> import('@/views/notelist'),
   article:()=> import('@/views/article'),
   reviseuser:()=> import('@/views/reviseuser'),
+  mynotelist:()=> import('@/views/mynotelist'),
 
   
 }
@@ -59,6 +60,13 @@ const router = new Router({
         title:'修改个人信息页'
       },
       component: components.reviseuser
+    },
+    {
+      path: '/mynotelist',
+      meta:{
+        title:'我的笔记页'
+      },
+      component: components.mynotelist
     }
   ]
 })
