@@ -12,9 +12,9 @@
             <el-table-column align="center" prop="commonnumber.length" label="回复数" width="100"></el-table-column>
             <el-table-column align="center"   label="操作" >
                 <template slot-scope="scope">
-                    <el-button type="primary" size="small">查看</el-button>
-                    <el-button type="primary" size="small">编辑</el-button>
-                    <el-button type="danger" size="small">删除</el-button>
+                    <el-button type="primary" size="small" @click="handledetail(scope.row._id)">查看</el-button>
+                    <el-button type="primary" size="small" @click="$router.push(`/reviseaRticle?id=${scope.row._id}`)">编辑</el-button>
+                    <el-button type="danger" size="small" @click="deletemynote(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
 
@@ -33,6 +33,33 @@
             }
         },
         methods:{
+            handledetail(id){
+                this.$router.push(`/article?id=${id}`)
+            },
+            deletemynote(id){
+                 this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                        this.$axios.delete(`/article/${id}`).then(res => {
+                            if(res.code == 200){
+                                this.$message({
+                                    type: 'success',
+                                    message: '删除成功!'
+                                });
+                                this.getdata()
+                            }
+                        })
+                        
+
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });          
+                    });
+            },
             getdata(){
                 this.$axios.get(`/article/user/${this.$route.query.id}`).then(res => {
                     this.mynotelist = res.data

@@ -66,6 +66,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
+            margin-right: 10px;
             overflow: hidden;
             img{
                 display: block;

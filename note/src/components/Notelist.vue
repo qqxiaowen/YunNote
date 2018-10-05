@@ -120,7 +120,8 @@
         margin-right:14px;
         width: 70px;
         height: 70px;
-        border-radius: 4px;
+        border-radius: 50%;
+        overflow: hidden;
         .img_ys{
             width: 70px;
             height: 70px;

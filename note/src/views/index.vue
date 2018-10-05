@@ -24,7 +24,21 @@
             Banner,
             Notelist,
             Userlogin
+        },
+        created(){
+            console.log(this.$route.query.state)
+            if(this.$route.query.state == 0){
+                let userinfo = {
+                    _id:'',
+                    avatar: '',
+                    email:'',
+                    username:'',
+                    password:'',
+                }
+                this.$store.commit('CHANGEINFO', userinfo) //清空vuex中的数据
+            }
         }
+
         
     }
 </script>

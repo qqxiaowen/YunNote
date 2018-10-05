@@ -67,7 +67,15 @@ const router = new Router({
         title:'我的笔记页'
       },
       component: components.mynotelist
-    }
+    },
+    {
+      path: '/reviseaRticle',
+      meta:{
+        title:'编辑我的笔记页'
+      },
+      component: components.writenote
+    },
+
   ]
 })
 

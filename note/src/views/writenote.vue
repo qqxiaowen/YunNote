@@ -2,7 +2,9 @@
     <div>
          <el-breadcrumb style="margin: 15px 0;" separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item >写笔记页面</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="!isrevise" >写笔记页面</el-breadcrumb-item>
+            <el-breadcrumb-item v-else >修改笔记页面</el-breadcrumb-item>
+            
         </el-breadcrumb>
         <div class="write_box">
             <h2>标题：</h2>
@@ -24,7 +26,8 @@
                 </el-radio-group>
             </div>
             
-            <el-button type="primary" @click="handleSublit" :disabled="isdisabled">发布笔记</el-button>
+            <el-button type="primary" v-if="!isrevise" @click="handleSublit" :disabled="isdisabled">发布笔记</el-button>
+            <el-button type="primary" v-else @click="resiveSublit">修改笔记</el-button>
         </div>
     </div>
 </template>
@@ -41,6 +44,8 @@
        components: {quillEditor},
     data() {
       return {
+        isrevise:false,
+
         category:'',
         token:'',
         formdata:{
@@ -97,6 +102,15 @@
                 }
             })
         },
+        resiveSublit(){
+            // console.log('1')
+            this.$axios.put(`article/${this.$route.query.id}`,this.formdata).then(res => {
+                if(res.code == 200){
+                    this.$message.success(res.msg)
+                    this.$router.push(`/mynotelist?id=${this.formdata.author._id}`)
+                }
+            })
+        },
         getCategory(){
             this.$axios.get('/category').then(res => {
                 this.category = res.data
@@ -107,6 +121,13 @@
     created() {
         this.getCategory()
         this.gettoken()
+        if(this.$route.path == '/reviseaRticle'){
+            this.isrevise = true;
+            this.$axios.get(`article/${this.$route.query.id}`).then(res =>{
+                this.formdata = res.data
+                this.formdata.category = res.data.category._id
+            })
+        }
     },
     computed:{
         isdisabled(){

@@ -77,6 +77,19 @@ router.get('/article/:id',(req,res) => {
         })
     })
 })
+// 修改一条笔记
+router.put('/article/:id',(req,res)=>{
+    let {id} =req.params
+    console.log(id)
+    let {title,content,contentText,category} =req.body
+    article.updateOne({_id:id},{$set:{title,content,contentText,category}}).then(data =>{
+        res.json({
+            code:200,
+            msg:'修改成功'
+        })
+    })
+
+})
 
 // 删除一条笔记
 router.delete('/article/:id',(req,res) => {

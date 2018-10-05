@@ -34,7 +34,7 @@ const xhr = {
                 if(res.data.code == 401){
                     console.log("登录失效fetch")
                     Message.warning('登录状态失效，正在跳转。。。');
-                    router.push('/')
+                    router.push('/?state=0')
                  }
                 resolve(res.data)
             }).catch(err=>{
