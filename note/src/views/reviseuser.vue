@@ -62,8 +62,8 @@
         },
         methods:{
             gettoken(){
-                axios.get('http://upload.yaojunrong.com/getToken').then(res =>{
-                    this.token.token = res.data.data
+                this.$axios.get('/getToken').then(res =>{
+                    this.token.token = res.data
                 })
             },
             handleAvatarSuccess(res, file) {

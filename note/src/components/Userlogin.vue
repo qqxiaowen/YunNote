@@ -30,7 +30,7 @@
       </div>
       <div>
         <el-button type="primary" style="width:100%;margin-top: 10px;" @click="$router.push(`/reviseuser?email=${$store.state.userinfo.email}`)">修改个人信息</el-button>
-        <el-button type="warning" class="input_ys" style="width: 100%;margin-top: 10px;" @click="handleLogout">退出登录 </el-button>
+        <el-button type="warning" style="width: 100%;margin: 10px 0 0 0;" @click="handleLogout">退出登录 </el-button>
       </div>
     </div>
   </div>
@@ -145,9 +145,7 @@
     }
     
   }
-.input_ys{
-  margin-left: 0;
-}
+
   /*用户登陆框结束*/
 
 

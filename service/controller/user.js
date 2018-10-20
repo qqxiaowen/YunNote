@@ -20,7 +20,7 @@ router.post('/user',(req,res)=>{
                 })
             }else{
                 const avatarNumber = Math.floor(Math.random()*9)
-                const avatar = `http://pbl.yaojunrong.com/avatar${avatarNumber}.jpg`
+                const avatar = `http://pgdt2gm62.bkt.clouddn.com/avatar${avatarNumber}.png`
 
                 user.create({avatar,username,password,email}).then(data=>{
                     res.json({

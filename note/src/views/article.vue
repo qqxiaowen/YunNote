@@ -60,6 +60,7 @@
     background: #fff;
     border-radius: 6px;
     padding: 20px;
+
     .userinfo{
         .user_left{
             float: left;
@@ -97,6 +98,15 @@
 }
 .content{
     line-height: 2;
+    /deep/{
+        img{
+            display: block;
+            margin: 0 auto;
+            max-width: 750px;
+            max-height: 750px;
+        }
+    }
+   
     .content_title{
         text-align: center;
         color: #409eff;

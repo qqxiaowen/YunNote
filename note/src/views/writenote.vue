@@ -85,8 +85,8 @@
     },
     methods: {
         gettoken(){
-            axios.get('http://upload.yaojunrong.com/getToken').then(res =>{
-                this.token = res.data.data
+            this.$axios.get('/getToken').then(res =>{
+                this.token = res.data
             })
         },
         handlechange({ quill, html, text }){

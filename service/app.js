@@ -12,6 +12,7 @@ var dbConnect = require('./database/db');
 
 // 路由设置1
 var index = require('./controller/index')
+var index2 = require('./routes/index')
 
 
 var app = express();
@@ -40,6 +41,7 @@ app.use(session({
 
 // 路由设置2
 app.use('/', index);
+app.use('/', index2);
 
 
 // catch 404 and forward to error handler
